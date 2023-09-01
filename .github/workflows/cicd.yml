@@ -26,7 +26,7 @@ jobs:
           parameters: templates/synapse-workspace.parameters.json
 
       - name: Deploy Synapse Artifacts using GitHub Action
-        uses: Azure/synapse-workspace-deployment@v0.4.0
+        uses: Azure/synapse-workspace-deployment
         with:
           TargetWorkspaceName: mySynapseWorkspace
           TemplateFile: templates/synapse-artifacts.json

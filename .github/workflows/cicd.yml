@@ -25,13 +25,13 @@ jobs:
     - name: Set up Azure CLI
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }} # Use the secret name where you stored your Azure credentials
+        creds: ${{ secrets.GITHUB }} # Use the secret name where you stored your Azure credentials
 
 
-    - name: Login to Azure
-      run: |
-        az login --service-principal --tenant <your-tenant-id> --username <your-client-id> --password <your-client-secret>
-        az account set --subscription "fc1a89fb-a3f7-4959-b325-efcd15bb63dc"
+    # - name: Login to Azure
+    #   run: |
+    #     az login --service-principal --tenant <your-tenant-id> --username <your-client-id> --password <your-client-secret>
+    #     az account set --subscription "fc1a89fb-a3f7-4959-b325-efcd15bb63dc"
 
     - name: Deploy to Azure Synapse
       run: |

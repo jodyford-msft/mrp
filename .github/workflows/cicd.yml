@@ -13,10 +13,12 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Set up Azure PowerShell
-      uses: azure/setup-azure-powershell@v2
-      with:
-        azps-version: '2.1.0'  # Specify the Azure PowerShell module version
+
+    - name: Install Azure PowerShell
+      run: |
+        # Install Azure PowerShell module
+        Install-Module -Name Az -Force -AllowClobber
+        Install-Module -Name AzureRM -Force -AllowClobber
 
     - name: Install Azure CLI
       run: |

@@ -1,46 +1,36 @@
-name: Deploy Synapse Workspace
-
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
-
+name: My Workflow
+on: [push, pull_request]
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - name: Check Out Repository
+      id: checkout_repository
+      uses: actions/checkout@v2
 
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+    # AML Workspace Action
+    - uses: Azure/aml-workspace@v1
+      id: aml_workspace
+      # required inputs as secrets
+      with:
+        # required
+        azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
+        # optional
+        parameters_file: "workspace.json"
 
-      - name: Deploy Synapse Workspace using ARM template
-        uses: azure/arm-deploy@v1
-        with:
-          resourceGroupName: myResourceGroup
-          template: templates/synapse-workspace.json
-          parameters: templates/synapse-workspace.parameters.json
 
-      - name: Deploy Synapse Artifacts using GitHub Action
-        uses: Azure/synapse-workspace-deployment
-        with:
-          TargetWorkspaceName: mySynapseWorkspace
-          TemplateFile: templates/synapse-artifacts.json
-          ParametersFile: templates/synapse-artifacts.parameters.json
-          Environment: Azure Public
-          resourceGroup: myResourceGroup
-          clientId: "bdc461c4-b24b-4d35-82fc-916f5faa1c13"
-          clientSecret: "Voy8Q~gpACSvu1S4hOngLWALr8RFs0D8uRojTa0k"
-          subscriptionId: "fc1a89fb-a3f7-4959-b325-efcd15bb63dc"
-          tenantId: "72f988bf-86f1-41af-91ab-2d7cd011db47"
-          operation: deploy
+          # TargetWorkspaceName: mySynapseWorkspace
+          # TemplateFile: templates/synapse-artifacts.json
+          # ParametersFile: templates/synapse-artifacts.parameters.json
+          # Environment: Azure Public
+          # resourceGroup: myResourceGroup
+          # clientId: "bdc461c4-b24b-4d35-82fc-916f5faa1c13"
+          # clientSecret: "Voy8Q~gpACSvu1S4hOngLWALr8RFs0D8uRojTa0k"
+          # subscriptionId: "fc1a89fb-a3f7-4959-b325-efcd15bb63dc"
+          # tenantId: "72f988bf-86f1-41af-91ab-2d7cd011db47"
+          # operation: deploy
 
-      - name: Logout from Azure
-        run: az logout
 
 
 

@@ -20,16 +20,6 @@ jobs:
         parameters_file: "workspace.json"
 
 
-          # TargetWorkspaceName: mySynapseWorkspace
-          # TemplateFile: templates/synapse-artifacts.json
-          # ParametersFile: templates/synapse-artifacts.parameters.json
-          # Environment: Azure Public
-          # resourceGroup: myResourceGroup
-          # clientId: "bdc461c4-b24b-4d35-82fc-916f5faa1c13"
-          # clientSecret: "Voy8Q~gpACSvu1S4hOngLWALr8RFs0D8uRojTa0k"
-          # subscriptionId: "fc1a89fb-a3f7-4959-b325-efcd15bb63dc"
-          # tenantId: "72f988bf-86f1-41af-91ab-2d7cd011db47"
-          # operation: deploy
 
 
 
